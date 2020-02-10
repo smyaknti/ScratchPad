@@ -12,7 +12,7 @@ This is a prototype work to store and analyse battle logs of brawl stars
 
 - `cd brawlstars`
 
-- `python -m pip install requirements.txt` 
+- `python -m pip install -r requirements.txt` 
 (If you are on linux, you need to make it `python3` and `pip3` instead.)
 
 2. Edit the files and fill in your player tag and your API token from [this website.](https://developer.brawlstars.com)
