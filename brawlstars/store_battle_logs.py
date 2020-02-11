@@ -56,11 +56,11 @@ def store_battle_logs(client, player_tag):
     player_tag {String} : The player tag you want the battle logs for
     """
     list_of_battles = battle_logs_dict(client, player_tag)
-    db = shelve.open('data')  # currently saves in the root directory
-    for battle in list_of_battles:
-        # uses battle time as the database key
-        db[battle["battleTime"]] = battle
-    db.close()
+    with shelve.open('data') as db  # currently saves in the root directory
+        for battle in list_of_battles:
+            # uses battle time as the database key
+            db[battle["battleTime"]] = battle
+
     print(Fore.GREEN+f'Time: {time.ctime()}|'+Fore.CYAN+f'👦 {player_tag}')
 
 

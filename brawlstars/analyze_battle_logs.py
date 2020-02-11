@@ -104,6 +104,5 @@ if __name__ == "__main__":
     player_tag = 'Paste your player tag'
 
     # the file you saved in the store_battle_logs.py
-    data = shelve.open('data')
-
-    battle_log(data, player_tag)
+    with shelve.open('data') as data:
+    	battle_log(data, player_tag)
