@@ -20,7 +20,7 @@ import time
 from colorama import Fore
 
 
-token = 'Get your API token from developer.brawlstars.com or https://api.starlist.pro/dashboard and paste it here within quotes'
+token = 'Get your API token from developer.brawlstars.com and paste it here within quotes'
 
 def battle_logs_dict(client, player_tag):
     """
