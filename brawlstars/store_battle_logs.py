@@ -68,7 +68,7 @@ def store_battle_logs(client, player_tag):
 
 def main():
 
-    client = brawlstats.BrawlAPI(token)
+    client = brawlstats.OfficialAPI(token)
 
     # can contain only the following 0289PYLQGRJCUV
     player_tag = 'Paste your player tag'
