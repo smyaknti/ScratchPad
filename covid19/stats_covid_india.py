@@ -80,7 +80,7 @@ recovered_clean = DataFrame(recovered.loc[recovered['timetaken']>pd.Timedelta(da
 stdev_recv_days = statistics.stdev(pd.to_numeric(recovered_clean["timetaken"].dt.days))
 mean_recv_days = statistics.mean(pd.to_numeric(recovered_clean["timetaken"].dt.days))
 
-print(f'{Fore.GREEN}Mean Recovery time: {mean_recv_days:.2f} days; Std. Dev.: {stdev_recv_days:.2f} days')
+print(f'{Fore.GREEN}Mean Recovery time: {mean_recv_days:.2f} days\nStd. Dev.: {stdev_recv_days:.2f} days')
 print(f'{Fore.CYAN}Death to Recovery ratio: {(deaths/recv)*100:.2f}%')
 
 # In[32]:
