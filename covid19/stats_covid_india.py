@@ -21,15 +21,16 @@ url = 'https://api.covid19india.org/raw_data.json'
 # In[3]:
 
 
-data = pd.read_json(url)
 
 
 # In[4]:
 
 
-import urllib, json
+import urllib.request as url_lib
+import json
 
-response = urllib.request.urlopen(url)
+
+response = url_lib.urlopen(url)
 data = json_normalize(json.loads(response.read())["raw_data"])
 print(f'{Fore.YELLOW}Update Time: {time.ctime()}')
 
@@ -59,13 +60,13 @@ deaths = len(DataFrame(data.loc[data['currentstatus']=='Deceased']))
 recv = total-(hosp+deaths)
 mean_recv = pd.to_numeric(DataFrame(data.loc[data['currentstatus']=='Recovered'])["agebracket"]).mean()
 mean_death = pd.to_numeric(DataFrame(data.loc[data['currentstatus']=='Deceased'])["agebracket"]).mean()
-stdev_calc = DataFrame(data.loc[data['agebracket']!=''])
+stdev_calc = DataFrame(data.loc[data['agebracket']!=''], columns = ['agebracket','currentstatus'])
 stdev_recv = statistics.stdev(pd.to_numeric(DataFrame(stdev_calc.loc[data['currentstatus']=='Recovered']).dropna()["agebracket"]))
 stdev_death = statistics.stdev(pd.to_numeric(DataFrame(stdev_calc.loc[data['currentstatus']=='Deceased']).dropna()["agebracket"]))
 
 
 
-print(f'{Fore.CYAN}Total cases: {total}\n{hosp} in progress\nDeaths: {deaths}\nRecoveries: {recv}')
+print(f'{Fore.CYAN}Total cases: {total}\n{hosp} in progress.\nDeaths: {deaths}\nRecoveries: {recv}')
 print(f'{Fore.GREEN}Recovery rate: {(recv/total)*100:.2f}%\nMean Age: {mean_recv:.2f} years\nStd. Dev.: {stdev_recv:.2f} years')
 print(f'{Fore.RED}Mortality rate: {(deaths/total)*100:.2f}%\nMean age: {mean_death:.2f} years\nStd. Dev. : {stdev_death:.2f} years')
 
@@ -79,7 +80,7 @@ recovered_clean = DataFrame(recovered.loc[recovered['timetaken']>pd.Timedelta(da
 stdev_recv_days = statistics.stdev(pd.to_numeric(recovered_clean["timetaken"].dt.days))
 mean_recv_days = statistics.mean(pd.to_numeric(recovered_clean["timetaken"].dt.days))
 
-print(f'{Fore.GREEN}Mean Recovery time: {mean_recv_days:.2f} days\nStd. Dev.: {stdev_recv_days:.2f} days')
+print(f'{Fore.GREEN}Mean Recovery time: {mean_recv_days:.2f} days; Std. Dev.: {stdev_recv_days} days')
 print(f'{Fore.CYAN}Death to Recovery ratio: {(deaths/recv)*100:.2f}%')
 
 # In[32]:
