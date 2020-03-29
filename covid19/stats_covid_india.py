@@ -65,10 +65,10 @@ stdev_death = statistics.stdev(pd.to_numeric(DataFrame(stdev_calc.loc[data['curr
 
 
 
-print(f'{Fore.CYAN}Total cases are {total}, out of which {hosp} are still in progress.\nThere are {deaths} deaths and {recv} recoveries.')
-print(f'{Fore.GREEN}Recovery rate is {(recv/total)*100:.2f}% and the mean age group is {mean_recv:.2f} years and Std. Dev. is {stdev_recv:.2f} years.')
-print(f'{Fore.RED}Mortality rate is {(deaths/total)*100:.2f}% and the mean age group is {mean_death:.2f} years and Std. Dev. is {stdev_death:.2f} years.')
-print(f'{Fore.CYAN}The death to recovery ratio is {(deaths/recv)*100:.2f}%')
+print(f'{Fore.CYAN}Total cases: {total}\n{hosp} in progress\nDeaths: {deaths}\nRecoveries: {recv}')
+print(f'{Fore.GREEN}Recovery rate: {(recv/total)*100:.2f}%\nMean Age: {mean_recv:.2f} years\nStd. Dev.: {stdev_recv:.2f} years')
+print(f'{Fore.RED}Mortality rate: {(deaths/total)*100:.2f}%\nMean age: {mean_death:.2f} years\nStd. Dev. : {stdev_death:.2f} years')
+
 
 # In[30]:
 
@@ -79,8 +79,8 @@ recovered_clean = DataFrame(recovered.loc[recovered['timetaken']>pd.Timedelta(da
 stdev_recv_days = statistics.stdev(pd.to_numeric(recovered_clean["timetaken"].dt.days))
 mean_recv_days = statistics.mean(pd.to_numeric(recovered_clean["timetaken"].dt.days))
 
-print(f'{Fore.GREEN}Out of the {len(recovered)} recoveries, the mean time of recovery is {mean_recv_days:.2f} days, and Std. Dev. is {stdev_recv_days:.2f} days')
-
+print(f'{Fore.GREEN}Mean Recovery time: {mean_recv_days:.2f} days\nStd. Dev.: {stdev_recv_days:.2f} days')
+print(f'{Fore.CYAN}Death to Recovery ratio: {(deaths/recv)*100:.2f}%')
 
 # In[32]:
 
@@ -99,12 +99,12 @@ print(f'{Fore.GREEN}Out of the {len(recovered)} recoveries, the mean time of rec
 # In[33]:
 
 
-indians = len(DataFrame(data.loc[data['nationality']=='India']))
-Nationality = DataFrame(data.loc[data['nationality']!=''])
-non_indians=len(DataFrame(Nationality.loc[Nationality['nationality']!='India']))
-unknown_nationality = total - indians - non_indians
+# indians = len(DataFrame(data.loc[data['nationality']=='India']))
+# Nationality = DataFrame(data.loc[data['nationality']!=''])
+# non_indians=len(DataFrame(Nationality.loc[Nationality['nationality']!='India']))
+# unknown_nationality = total - indians - non_indians
 
-print(f'Out of {total} people, there are {indians} Indians and {non_indians} Non Indians. And for the rest {unknown_nationality} people, their data is not there.')
+# print(f'Out of {total} people, there are {indians} Indians and {non_indians} Non Indians. And for the rest {unknown_nationality} people, their data is not there.')
 
 
 # In[34]:
