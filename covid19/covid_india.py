@@ -8,9 +8,10 @@ import pandas as pd
 from pandas import json_normalize, DataFrame
 import json
 import statistics
-import urllib, json
+import json
 from colorama import Fore, init
 import time
+import urllib.request as url_lib
 init(autoreset=True)
 
 
@@ -24,9 +25,9 @@ url_key_data = 'https://api.covid19india.org/data.json'
 # In[3]:
 
 
-response = urllib.request.urlopen(url)
+response = url_lib.urlopen(url)
 data = json_normalize(json.loads(response.read())["raw_data"])
-response = urllib.request.urlopen(url_key_data)
+response = url_lib.urlopen(url_key_data)
 key_values = DataFrame(json_normalize(json.loads(response.read())["statewise"]))
 key_values = DataFrame(key_values.loc[key_values['state']=='Total'])
 print(f'{Fore.YELLOW}Update Time: {time.ctime()}')
