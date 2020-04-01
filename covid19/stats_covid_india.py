@@ -6,7 +6,6 @@
 
 import pandas as pd
 from pandas import json_normalize, DataFrame
-from IPython.display import display, HTML
 import json
 import statistics
 import urllib, json
