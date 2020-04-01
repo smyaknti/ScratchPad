@@ -71,7 +71,7 @@ stdev_death = statistics.stdev(pd.to_numeric(DataFrame(stdev_calc.loc[data['curr
 
 
 
-print(f'{Fore.CYAN}Total cases: {total}:\n{hosp} in progress\n{Fore.RED}{deaths} Deaths\n{Fore.GREEN}{recv} Recoveries')
+print(f'{Fore.CYAN}Total cases: {total}\n{hosp} in progress\n{Fore.RED}{deaths} Deaths\n{Fore.GREEN}{recv} Recoveries')
 print(f'{Fore.GREEN}Recovery rate: {(recv/total)*100:.2f}%\n{length_recovery} people with valid data:\nMean age:{mean_recv:.2f} years\nStd. Dev.: {stdev_recv:.2f} years')
 print(f'{Fore.RED}Mortality rate: {(deaths/total)*100:.2f}%\n{length_deceased} people with valid data:\nMean age: {mean_death:.2f} years\nStd. Dev.: {stdev_death:.2f} years')
 
